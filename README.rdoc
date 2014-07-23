@@ -1,28 +1,16 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This was created with Xubuntu 14.10 64-Bit using Rails 4.1.4 and Ruby 2.1.2. Be advised I used therubyracer as the JS runtime environment.
 
-Things you may want to cover:
+I believe I met the required specs you sent me. Users can sign up, create articles and format them using Textile & Code Ray.
+There's also basic levels of authorisation so users can not edit articles they did not pen. Please note, there is an admin boolean
+field on the User model. This can be toggled via console. Admins can edit everything.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Libs used (excluding Test Gems):
+Ransack (For quickly adding a search)
+Cancanan (For authorisation purposes)
+Zurb Foundation (To apply a default layout)
+Coderay (Formatting code tags)
+Redcloth (Adding Textile)
+    
+Code Coverage on tests is not 100% (especially on ability), but the basic unit tests are there.
