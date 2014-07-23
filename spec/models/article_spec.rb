@@ -12,7 +12,10 @@ it "is invalid without a body" do
 	article = FactoryGirl.build(:article, body: nil)
 	expect(article).to have(1).errors_on(:body)
 end
-it "is invaild without an author"
-it "is valid with a title, body and author"
+it "is invaild without an author" do
+    article = FactoryGirl.build(:article, user_id: nil)
+    expect(article).to have(1).errors_on(:user_id)
+end
+
 
 end

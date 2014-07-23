@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :article do
+    user
     title { Faker::Company.catch_phrase }
     body { Faker::Lorem.paragraph(2) }
-  end
+    end
 end

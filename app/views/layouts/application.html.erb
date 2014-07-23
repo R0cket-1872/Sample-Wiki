@@ -1,14 +1,62 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Wiki</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "Company Wiki" %></title>
 
-</body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+	 
+
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to "Company Wiki", articles_path %></a></h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="divider"></li>
+      <li><%= link_to "Articles", articles_path %></li>
+      <li class="divider"></li>
+      <% if current_user %>
+      <li><%= link_to "Your Articles", current_user %></li>
+     
+     <li><%= link_to "Log Out", logout_path %></li>
+<% else %>
+  <li class="divider"></li>
+  <li><%= link_to "Sign Up", signup_path %></li>
+  <li class="divider"></li>
+  <li><%= link_to "Log In", login_path %></li>
+<% end %></li>
+      
+    </ul>
+  </div>
+</nav>
+
+ 
+	  
+	  
+	  
+	<div class="row">
+		 <div class="small-12 columns">  
+    <% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div data-alert class="alert-box round <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
+      <%= content_tag :div, msg %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+<% end %>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+    </div>
+    </div>
+  </body>
 </html>

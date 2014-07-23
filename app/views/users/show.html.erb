@@ -1,17 +1,14 @@
-<h1 style="text-align:center;">Listing Wiki Articles</h1>
-<%= search_form_for @q do |f| %>
-  <%= f.label :articles_title_start %>
-  <%= f.search_field :title_start %>
-  <%= f.submit %>
-<% end %>
+<p id="notice"><%= notice %></p>
+
+<h1 style="text-align:center;"><%= @user.username %></h1>
+<h2> Articles you have created: </h2>
 <table style="text-align:center;">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Author</th>
       <th>Created At</th>
       <th>Last Updated At</th>
-      <th colspan="5"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -19,7 +16,6 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%=link_to article.title, article %></td>
-        <td><%= article.user.name %></td>
         <td><%= article.created_at %></td>
         <td><%= article.updated_at %></td>
         <% if can? :update, article %>
@@ -32,7 +28,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path, class:"button radius" %>

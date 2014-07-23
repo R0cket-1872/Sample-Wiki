@@ -1,10 +1,13 @@
 class ArticlesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authorise, only: [:new, :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+      @q = Article.search(params[:q])
+      @articles = @q.result(distinct: true)
   end
 
   # GET /articles/1
@@ -25,7 +28,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
+    @article.user_id = current_user.id
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
